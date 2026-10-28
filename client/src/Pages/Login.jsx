@@ -2,6 +2,7 @@ import { useState,useContext,useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../components/Logo'
 import axios from 'axios'
+import { API_URL } from '../config'
 import { AuthContext } from '../context/AuthContext'
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const SAMPLE = {
@@ -30,7 +31,7 @@ export default function Login() {
     event.preventDefault();
     const handleLogin = async (email,password) =>{
       try{
-      const response =  await axios.post("http://localhost:3000/api/auth/login",{"email":email,"password":password},{withCredentials:true});
+      const response =  await axios.post(`${API_URL}api/auth/login`,{"email":email,"password":password},{withCredentials:true});
       setUser(response.data.user);
       console.log("User",response.data.user);
       setLogged(true);

@@ -1,6 +1,7 @@
 import ScorePopUp from "./ScorePopUp";
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
+import { API_URL } from "../config";
 function stripHtml(html) {
     const doc = new DOMParser().parseFromString(html, "text/html");
     return doc.body.textContent || "";
@@ -80,7 +81,7 @@ export default function OfferCard({ offer,hasCv }) {
     
     try {
         const response = await axios.post(
-            "http://localhost:3000/api/Ai/CompareCv",
+            `${API_URL}api/Ai/CompareCv`,
             { words},
             { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -101,7 +102,7 @@ export default function OfferCard({ offer,hasCv }) {
         }
         //hadhi bch tabda tab3th post req lel new doc elli fih el offers el 5assin bl user 
         const response = await axios.post(
-            "http://localhost:3000/api/",
+            `${API_URL}api/`,
             { words},
             { headers: { Authorization: `Bearer ${token}` } }
         );

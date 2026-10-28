@@ -7,7 +7,7 @@ import Register from './Pages/Register';
 import Error404 from './Pages/Error404';
 import Discover from './Pages/Discover';
 import { AuthContext } from './context/AuthContext';
-
+import { API_URL } from './config';
 // Restricts /Login and /Register to unauthenticated users only
 function GuestRoute() {
   const { logged, loading } = useContext(AuthContext);
@@ -60,6 +60,7 @@ export default function App() {
   const [user, setUser] = useState(null);
   const [logged, setLogged] = useState(false);
   const [loading, setLoading] = useState(true);
+  
 
   useEffect(() => {
     const loadUser = async () => {
@@ -69,7 +70,7 @@ export default function App() {
         return;
       }
       try {
-        const response = await axios.get('http://localhost:3000/api/auth/me', {
+        const response = await axios.get(`${API_URL}api/auth/me`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setUser(response.data);

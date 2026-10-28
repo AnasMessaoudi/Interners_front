@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../components/Logo'
 import axios from 'axios'
+import { API_URL } from '../config'
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 const SAMPLE = {
   title: 'Software engineering intern',
@@ -22,7 +23,7 @@ export default function Register() {
   event.preventDefault();
   const HandleRegister = async ()=>{
     try{
-      const response = await axios.post("http://localhost:3000/api/auth/signup",{username : username.trim(),email:email.trim(),password:password},{withCredentials:true});
+      const response = await axios.post(`${API_URL}api/auth/signup`,{username : username.trim(),email:email.trim(),password:password},{withCredentials:true});
       console.log(response.data.message);
       navigate('/Login');
     }catch(err){

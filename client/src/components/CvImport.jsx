@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import pdfToText from 'react-pdftotext';
+import {API_URL} from '../config';
 export default function CvImport({ onClose ,onUpload}) {
     const [selectedFile, setSelectedFile] = useState(null);
     const [error, setError] = useState("");
@@ -37,7 +38,7 @@ export default function CvImport({ onClose ,onUpload}) {
         setError("");
         try{
             const text = await pdfToText(selectedFile);
-            await axios.post("http://localhost:3000/api/cv",
+            await axios.post(`${API_URL}api/cv`,
         {fileName: selectedFile.name, extractedText: text },
         { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
         );
