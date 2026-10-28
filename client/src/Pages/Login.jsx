@@ -39,8 +39,9 @@ export default function Login() {
       localStorage.setItem('token',response.data.token);
       navigate('/');
       }catch(err){
-        console.log(err.response.data.message);
-        setError(err.response.data.message);
+        const message = err.response?.data?.message || err.message || 'Unable to log in. Please try again.';
+        console.error(err);
+        setError(message);
       }
     }
     if (!EMAIL_PATTERN.test(email.trim())) {
