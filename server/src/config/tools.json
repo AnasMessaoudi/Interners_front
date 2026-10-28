@@ -1,0 +1,37 @@
+[{
+    "type":"function",
+    "function":{
+        "name":"Read",
+        "description":"Read the file content at the provided file path ..",
+        "parameters":{
+            "type":"object",
+            "properties":{
+                "file_path":{
+                    "type":"string",
+                    "description":"path to the file to read .."
+                }
+            },
+            "required":["file_path"]
+        }
+    }
+},{
+    "type":"function",
+    "function":{
+        "name":"Write",
+        "description":"Write the content inside the file from the provided path. create if missing, overwrite if present ..",
+        "parameters":{
+            "type":"object",
+            "properties":{
+                "file_path":{
+                    "type":"string",
+                    "description":"path to the file to write .."
+                },
+                "content":{
+                    "type" :"string",
+                    "description":"the content to write inside the file from the provided path"
+                }
+            },
+            "required":["file_path","content"]
+        }
+    }
+}]

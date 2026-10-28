@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+@theme {
+  --color-paper: #f6f7f9;
+  --color-ink: #16213e;
+  --color-marker: #ffd93d;
+  --color-slate: #5a6782;
+  --color-line: #d8dde6;
+  --color-white-soft: #ffffff;
+  --color-error: #b3261e;
+
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Instrument Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-ink);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 2.75rem;
+    padding: 0.625rem 1.25rem;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    line-height: 1.2;
+    transition: background-color 150ms, color 150ms, box-shadow 150ms;
+    cursor: pointer;
+  }
+  .btn-ink {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+  .btn-ink:hover {
+    background: #0e1730;
+  }
+  .btn-marker {
+    background: var(--color-marker);
+    color: var(--color-ink);
+  }
+  .btn-marker:hover {
+    background: #ffe36b;
+  }
+  .btn-line {
+    border: 1.5px solid var(--color-ink);
+    color: var(--color-ink);
+  }
+  .btn-line:hover {
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+  .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}
+
+/* The one orchestrated moment: posting rows land in the hero feed on load. */
+@keyframes feed-in {
+  from {
+    opacity: 0;
+    transform: translateX(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.feed-row {
+  animation: feed-in 520ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .feed-row {
+    animation: none;
+  }
+}
