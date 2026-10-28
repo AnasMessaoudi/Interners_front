@@ -2,7 +2,7 @@ import { RouterProvider, createBrowserRouter, Navigate, Outlet } from 'react-rou
 import { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import Landing from './Pages/landing';
-import Login from './pages/Login';
+import Login from './Pages/Login';
 import Register from './Pages/Register';
 import Error404 from './Pages/Error404';
 import Discover from './Pages/Discover';
